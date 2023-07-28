@@ -854,7 +854,10 @@ class Decoder:
             o.faGroup,
             o.faMethod,
             o.faPercentage,
-            o.faProfile,
+            *fields) = fields
+        if self.serverVersion < 177:
+            o.faProfile, *fields = fields
+        (
             o.modelCode,
             o.goodTillDate,
             o.rule80A,
@@ -1007,7 +1010,7 @@ class Decoder:
             o.randomizePrice,
             *fields) = fields
 
-        if o.orderType == 'PEG BENCH':
+        if o.orderType in ('PEG BENCH', 'PEGBENCH'):
             (
                 o.referenceContractId,
                 o.isPeggedChangeAmountDecrease,
@@ -1107,7 +1110,10 @@ class Decoder:
             o.faGroup,
             o.faMethod,
             o.faPercentage,
-            o.faProfile,
+            *fields) = fields
+        if self.serverVersion < 177:
+            o.faProfile, *fields = fields
+        (
             o.modelCode,
             o.goodTillDate,
             o.rule80A,
@@ -1230,7 +1236,7 @@ class Decoder:
             o.randomizePrice,
             *fields) = fields
 
-        if o.orderType == 'PEG BENCH':
+        if o.orderType in ('PEG BENCH', 'PEGBENCH'):
             (
                 o.referenceContractId,
                 o.isPeggedChangeAmountDecrease,

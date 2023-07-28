@@ -1779,7 +1779,10 @@ class IB:
                     self._logger.error(f'{name} request timed out')
 
             # the request for executions must come after all orders are in
-            await asyncio.wait_for(self.reqExecutionsAsync(), timeout)
+            try:
+                await asyncio.wait_for(self.reqExecutionsAsync(), timeout)
+            except asyncio.TimeoutError:
+                self._logger.error('executions request timed out')
 
             # final check if socket is still ready
             if not self.client.isReady():
@@ -1883,8 +1886,8 @@ class IB:
         tags = (
             'AccountType,NetLiquidation,TotalCashValue,SettledCash,'
             'AccruedCash,BuyingPower,EquityWithLoanValue,'
-            'PreviousEquityWithLoanValue,GrossPositionValue,ReqTEquity,'
-            'ReqTMargin,SMA,InitMarginReq,MaintMarginReq,AvailableFunds,'
+            'PreviousDayEquityWithLoanValue,GrossPositionValue,RegTEquity,'
+            'RegTMargin,SMA,InitMarginReq,MaintMarginReq,AvailableFunds,'
             'ExcessLiquidity,Cushion,FullInitMarginReq,FullMaintMarginReq,'
             'FullAvailableFunds,FullExcessLiquidity,LookAheadNextChange,'
             'LookAheadInitMarginReq,LookAheadMaintMarginReq,'
