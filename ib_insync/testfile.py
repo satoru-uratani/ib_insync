@@ -5,7 +5,7 @@ import socket
 def run_test():
     util.startLoop()
     ib = IB()
-    ib.connect('127.0.0.1', 7497, clientId=0)
+    ib.connect('127.0.0.1', 7497, clientId=19)
     positiondata=ib.positions()
     #for p in positiondata:
      #   print(p)
@@ -42,7 +42,7 @@ def run_test():
     algoParams.append(TagValue("pctVol", 0.3))
     order2detail=Order(action="BUY",totalQuantity=100,orderType='LMT',lmtPrice=2300,algoStrategy='PctVol',algoParams=algoParams)
     #algoStrategy='PctVol'
-    order2 =LimitOrder("BUY",100,2300,algoStrategy='PctVol',algoParams=algoParams,orderRef="IOItest",transmit=False )
+    order2 =LimitOrder("BUY",100,2300,algoStrategy='PctVol',algoParams=algoParams,orderRef="IOItest",transmit=True )
     order3 = LimitOrder("BUY", 100, 2250, algoStrategy='PctVol', algoParams=algoParams,orderRef="IOItest2", transmit=False)
     order2.account="DU7226209"
     order3.account = "DU7226209"
@@ -56,7 +56,7 @@ def run_test():
     #ib.orderStatusEvent += orderStatusHandler
     trade2 = ib.placeOrder(contract2, order2)
 
-    #trade3 = ib.placeOrder(contract2, order3)
+    trade3 = ib.placeOrder(contract2, order3)
 
 
     #trade3 = ib.placeOrder(contract2, order3)

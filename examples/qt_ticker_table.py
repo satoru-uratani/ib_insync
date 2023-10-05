@@ -87,13 +87,13 @@ class Window(qt.QWidget):
             self.connectButton.setText('Connect')
         else:
             self.ib.connect(*self.connectInfo)
-            self.ib.reqMarketDataType(2)
-            self.connectButton.setText('Disonnect')
+            self.ib.reqMarketDataType(1)
+            self.connectButton.setText('Disconnect')
             for symbol in (
                     'EURUSD', 'USDJPY', 'EURGBP', 'USDCAD',
                     'EURCHF', 'AUDUSD', 'NZDUSD'):
                 self.add(f"Forex('{symbol}')")
-            self.add("Stock('TSLA', 'SMART', 'USD')")
+            self.add("Stock('7203', 'TSEJ', 'JPY')")
 
     def closeEvent(self, ev):
         loop = util.getLoop()
