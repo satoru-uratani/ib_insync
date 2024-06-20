@@ -104,7 +104,7 @@ if __name__ == '__main__':
     util.patchAsyncio()
     util.useQt()
     # util.useQt('PySide6')
-    window = Window('127.0.0.1', 7497, 1)
+    window = Window('127.0.0.1', 7496, 1)
     window.resize(600, 400)
     window.show()
     IB.run()
